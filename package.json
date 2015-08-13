@@ -1,0 +1,57 @@
+{
+  "name": "lori",
+  "version": "1.0.0",
+  "description": "A minimalist logging system for Node.js & Express",
+  "author": {
+    "name": "Isaac Whitfield",
+    "email": "iwhitfield@appcelerator.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/iwhitfield/lori.git"
+  },
+  "bugs": {
+    "email": "iwhitfield@appcelerator.com",
+    "url": "http://github.com/iwhitfield/lori/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "keywords": [
+    "logging",
+    "logger",
+    "express",
+    "middleware"
+  ],
+  "scripts": {
+    "coverage": "mocha -r blanket -R html-cov test",
+    "lcov": "mocha -r blanket -R mocha-lcov-reporter test",
+    "lint": "jshint .",
+    "test": "npm run lint && mocha -R spec test"
+  },
+  "dependencies": {
+    "colors": "1.1.2",
+    "moment": "2.10.6"
+  },
+  "devDependencies": {
+    "blanket": "1.1.7",
+    "codeclimate-test-reporter": "0.1.0",
+    "express": "4.13.3",
+    "fs-extra": "0.23.1",
+    "jshint": "2.8.0",
+    "mocha": "2.2.5",
+    "mocha-lcov-reporter": "0.0.2",
+    "should": "7.0.3",
+    "supertest": "1.0.1"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        ""
+      ],
+      "data-cover-never": [
+        "node_modules",
+        "test"
+      ]
+    }
+  }
+}
