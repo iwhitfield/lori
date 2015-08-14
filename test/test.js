@@ -281,6 +281,7 @@ describe(pkgName, function(){
         }
 
         for(var i = 0, j = lines.length; i < j; i++){
+          should(lines[i]).have.lengthOf(60);
           should(lines[i]).containEql(loggers[i].toUpperCase());
           should(lines[i]).containEql('test');
         }
