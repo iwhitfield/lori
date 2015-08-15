@@ -1,6 +1,6 @@
 {
   "name": "lori",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A minimalist logging system for Node.js & Express",
   "author": {
     "name": "Isaac Whitfield",
