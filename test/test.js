@@ -154,18 +154,6 @@ describe(pkgName, function(){
 
     });
 
-    it('allows logging overrides', function(next) {
-      lori.setLogger(function (str, msg, lvl) {
-        should(str).be.ok;
-        should(msg).eql('This is a test message');
-        should(lvl).eql('debug');
-
-        next();
-      });
-
-      lori.debug('This is a test message');
-    });
-
   });
 
   describe('constructor', function(){
@@ -274,6 +262,34 @@ describe(pkgName, function(){
 
         });
 
+    });
+
+  });
+
+  describe('overrides', function(){
+
+    it('allows logging overrides', function(next) {
+      lori.setLogger(function (str, msg, lvl) {
+        should(str).be.ok;
+        should(msg).eql('This is a test message');
+        should(lvl).eql('debug');
+
+        next();
+      });
+
+      lori.debug('This is a test message');
+    });
+
+    it('handles empty strings', function(next) {
+      lori.setLogger(function (str, msg, lvl) {
+        should(str).eql('');
+        should(msg).eql('');
+        should(lvl).eql('log');
+
+        next();
+      });
+
+      lori.log('');
     });
 
   });
