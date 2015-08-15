@@ -110,9 +110,14 @@ lori.configure({
     // overridden to write to files, etc. When writing to
     // files, it's a good idea to turn off colours.
     //
-    // It should be noted that the argument passed to this
-    // method is the final string after all formatting by Lori
-    log: function(str){
+    // The `str` arguments passed to this method is the
+    // final string after all formatting by Lori. The `msg`
+    // argument is the original log message (without colors),
+    // and the `lvl` argument is the level called, e.g. 'debug'
+    //
+    // This allows for flexible overrides, without adding a
+    // tonne of infrastructure.
+    log: function(str, msg, lvl){
         console.log(str);
     },
     
@@ -145,31 +150,39 @@ lori.configure({
 This is not the only time you can control Lori though, it's dynamic - you can modify it at any time, although naturally it will only effect the instance you're working with (instead of all of them):
 
 ```javascript
-// reset Lori to the default state (as shown in the above `configure`)
+// Reset Lori to the default state (as shown in the above `configure`)
 lori.reset();
 
-// modify to use a new logging method on the underlying instance
-lori.setLogger(function(str){
-    fs.appendFileSync('./myfile.txt', str);
+// Modify to use a new logging method on the underlying instance.
+//
+// This example will output a colored string to the console in
+// non-production environments, and log to a file in production
+// environments. The log file is based on the log level.
+lori.setLogger(function(str, msg, lvl){
+    if(app.get('env') !== 'production'){
+        console.log(str);
+    } else {
+        fs.appendFileSync('./' + lvl  + '-logs.txt', msg);
+    }
 });
 
-// change the date format
+// Change the date format
 lori.setDateFormat('DD-MM-YYYY');
 
-// change the theme used for colours - this will overwrite the previous theme
+// Change the theme used for colours - this will overwrite the previous theme
 lori.setTheme({
     info: 'blue'
 });
 
-// change the theme used for colours - this will merge with the previous theme
+// Change the theme used for colours - this will merge with the previous theme
 lori.updateTheme({
     info: 'blue'
 });
 
-// turn off coloured output
+// Turn off coloured output
 lori.useColors(false);
 
-// switch to using local time
+// Switch to using local time
 lori.useLocalTime(true);
 ```
 
