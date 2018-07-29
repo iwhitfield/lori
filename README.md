@@ -5,7 +5,7 @@ Lori is a very lightweight logger for use in Node.js applications, with a middle
 
 ### Compatibility
 
-This module is built on each commit with TravisCI on Node 0.10.x, 0.12.x and the latest version of `io.js`. Build results are sent over to [Code Climate](https://codeclimate.com/github/whitfin/lori) for analysis.
+This module is built on each commit with TravisCI on the latest stable version of Node.js, although the main module is compatible all the way back to 0.8.
 
 ### Usage
 
