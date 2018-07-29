@@ -21,13 +21,13 @@ There are a couple of ways you can use Lori, either as a generic logger or as a 
 
 As middleware, Lori will generate access logs for your Express application in the following format:
 
-```
+```javascript
 [Thu, 13 Aug 2015 19:14:09] [INFO]  GET /welcome 544.98ms
 ```
 
 To set up Lori as a piece of Middleware, simply drop it into your app as early as possible in your setup:
 
-```
+```javascript
 var lori = require('lori');
 
 app.use(lori.express());
