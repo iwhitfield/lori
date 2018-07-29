@@ -1,14 +1,14 @@
-var express = require('express');
-var fs = require('fs-extra');
-var moment = require('moment');
-var request = require('supertest');
-var should = require('should');
+const express = require('express');
+const fs = require('fs-extra');
+const moment = require('moment');
+const request = require('supertest');
+const should = require('should');
 
-var lori = require('../');
-var pkgName = require('../package').name;
+const lori = require('../');
+const pkgName = require('../package').name;
 
-var debugDir = __dirname + '/../tmp';
-var debugLog = debugDir + '/debug.log';
+const debugDir = __dirname + '/../tmp';
+const debugLog = debugDir + '/debug.log';
 
 describe(pkgName, function(){
 
@@ -21,7 +21,7 @@ describe(pkgName, function(){
           return start(err);
         }
 
-        var logFile = fs.createWriteStream(debugLog, {
+        let logFile = fs.createWriteStream(debugLog, {
           flags: 'w'
         });
 
@@ -38,7 +38,7 @@ describe(pkgName, function(){
 
   describe('configuration', function(){
 
-    var defaultTheme = {
+    let defaultTheme = {
       debug: 'yellow',
       error: 'red',
       info: 'green',
@@ -138,7 +138,7 @@ describe(pkgName, function(){
 
       lori.info('test');
 
-      var date = moment.utc();
+      let date = moment.utc();
 
       getDebugLines(function(err, lines){
         if(err){
@@ -159,7 +159,7 @@ describe(pkgName, function(){
   describe('constructor', function(){
 
     it('can create a new Logger instance', function(){
-      var L = new lori.Logger();
+      let L = new lori.Logger();
 
       L.dateFormat = 'YYYY';
 
@@ -171,7 +171,7 @@ describe(pkgName, function(){
 
   describe('middleware', function(){
 
-    var app, agent;
+    let app, agent;
 
     before('setup express server', function(){
       app = express();
@@ -187,7 +187,7 @@ describe(pkgName, function(){
     });
 
     it('returns a function to be used as middleware', function(){
-      var fn = lori.express();
+      let fn = lori.express();
 
       should(fn).be.a.Function;
       should(fn).have.lengthOf(3);
@@ -203,8 +203,8 @@ describe(pkgName, function(){
               return next(err);
             }
 
-            var date = moment.utc();
-            var splitBuffer = lines.pop().split(/\s+/);
+            let date = moment.utc();
+            let splitBuffer = lines.pop().split(/\s+/);
 
             // length
             should(splitBuffer).have.lengthOf(9);
@@ -229,7 +229,7 @@ describe(pkgName, function(){
     });
 
     it('uses custom date formats', function(next){
-      var dateFormat = 'DD-MM-YYYY';
+      let dateFormat = 'DD-MM-YYYY';
 
       lori.setDateFormat(dateFormat);
 
@@ -242,8 +242,8 @@ describe(pkgName, function(){
               return next(err);
             }
 
-            var date = moment.utc();
-            var splitBuffer = lines.pop().split(/\s+/);
+            let date = moment.utc();
+            let splitBuffer = lines.pop().split(/\s+/);
 
             // length
             should(splitBuffer).have.lengthOf(5);
@@ -298,7 +298,7 @@ describe(pkgName, function(){
 
     it('handle string arguments', function(next){
 
-      var loggers = ['debug','error','info','warn'];
+      let loggers = ['debug','error','info','warn'];
 
       loggers.forEach(function(k){
         lori[k]('test');
@@ -309,7 +309,7 @@ describe(pkgName, function(){
           return next(err);
         }
 
-        for(var i = 0, j = lines.length; i < j; i++){
+        for(let i = 0, j = lines.length; i < j; i++){
           should(lines[i]).have.lengthOf(60);
           should(lines[i]).containEql(loggers[i].toUpperCase());
           should(lines[i]).containEql('test');
@@ -324,8 +324,8 @@ describe(pkgName, function(){
 
     it('handle object arguments', function(next){
 
-      var loggers = ['debug','error','info','warn'];
-      var obj = {
+      let loggers = ['debug','error','info','warn'];
+      let obj = {
         field1: 'value',
         field2: 123,
         field3: {
@@ -342,7 +342,7 @@ describe(pkgName, function(){
           return next(err);
         }
 
-        for(var i = 0, j = lines.length; i < j; i++){
+        for(let i = 0, j = lines.length; i < j; i++){
           should(lines[i]).containEql(loggers[i].toUpperCase());
           should(lines[i]).containEql(JSON.stringify(obj));
         }

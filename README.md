@@ -1,11 +1,11 @@
-Lori [![Build Status](https://travis-ci.org/iwhitfield/lori.svg?branch=master)](https://travis-ci.org/iwhitfield/lori) [![Code Climate](https://codeclimate.com/github/iwhitfield/lori/badges/gpa.svg)](https://codeclimate.com/github/iwhitfield/lori) [![Test Coverage](https://codeclimate.com/github/iwhitfield/lori/badges/coverage.svg)](https://codeclimate.com/github/iwhitfield/lori)
-====
+# Lori
+[![Build Status](https://travis-ci.org/whitfin/lori.svg?branch=master)](https://travis-ci.org/whitfin/lori)
 
 Lori is a very lightweight logger for use in Node.js applications, with a middleware option for Express access logs. Lori is a colourful way to output quick logging, and is extremely easy to set up. It's not designed to take on the functionality of other libraries such as [morgan](https://github.com/expressjs/morgan), but to get something in place quickly which can provide insight into your application.
 
 ### Compatibility
 
-This module is built on each commit with TravisCI on Node 0.10.x, 0.12.x and the latest version of `io.js`. Build results are sent over to [Code Climate](https://codeclimate.com/github/iwhitfield/lori) for analysis.
+This module is built on each commit with TravisCI on Node 0.10.x, 0.12.x and the latest version of `io.js`. Build results are sent over to [Code Climate](https://codeclimate.com/github/whitfin/lori) for analysis.
 
 ### Usage
 
@@ -65,7 +65,7 @@ Each level has a colour associated with it (which can be changed, see below). By
 
 #### Configuration
 
-Lori is extremely easy to use, with a few little utilities to allow for customisation. 
+Lori is extremely easy to use, with a few little utilities to allow for customisation.
 
 ##### Constructor
 
@@ -85,25 +85,25 @@ The `configure` function is typically called as soon as you start your applicati
 
 ```javascript
 lori.configure({
-    
+
     // The format the date string will take at
     // the start of dated logs. This defaults to
     // a UTC style JavaScript string. Formats are
     // controlled via MomentJS, so see their docs
     // for examples.
     dateFormat: 'ddd, DD MMM YYYY HH:mm:ss',
-    
+
     // By default, all timestamps are in UTC time,
     // but this can be changed by setting this value
     // to true. If true, dates will use the local time
     // via the default moment constructor.
     localTime: false,
-    
+
     // Simply a flag of whether you wish to enable
     // colored output or not. If writing to a file,
     // this should usually be false.
     logColors: true,
-    
+
     // This is the low-level log function used by Lori
     // when outputting logs. By default, logs go straight
     // to console.log (as shown), however it can be
@@ -120,13 +120,13 @@ lori.configure({
     log: function(str, msg, lvl){
         console.log(str);
     },
-    
+
     // This is the theme used for each type of logger. If
     // any of these values are unset, they will have their
     // colours removed. Colours are provided by the npm
     // module `colors`, so visit their docs to see the valid
     // strings.
-    // 
+    //
     // The bottom four keys shown here are part of the access
     // logs in the Express middleware - you can control each
     // part of the log output.
@@ -135,13 +135,13 @@ lori.configure({
         error: 'red',
         info: 'green',
         warn: 'yellow',
-    
+
         verb: 'white',
         path: 'cyan',
         message: 'white',
         duration: 'white'
     }
-    
+
 });
 ```
 
@@ -188,7 +188,7 @@ lori.useLocalTime(true);
 
 ### Tests
 
-Tests are written in Mocha, and can be run via npm scripts. 
+Tests are written in Mocha, and can be run via npm scripts.
 
 ```bash
 $ npm test
@@ -205,4 +205,4 @@ Sadly, couldn't use Grunt because it swallows the colours.
 
 ### Issues
 
-If you find any issues inside this module, feel free to open an issue [here](https://github.com/iwhitfield/lori/issues "Lori Issues").
+If you find any issues inside this module, feel free to open an issue [here](https://github.com/whitfin/lori/issues "Lori Issues").
